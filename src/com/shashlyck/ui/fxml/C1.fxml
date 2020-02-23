@@ -8,8 +8,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="parent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shashlyck.ui.fxml.C1">
-   <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+<VBox fx:id="parent" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shashlyck.ui.fxml.C1">
+   <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="SOMETIMES">
       <VBox.margin>
          <Insets bottom="28.0" top="28.0" />
       </VBox.margin>
@@ -25,22 +25,22 @@
       </Label>
       <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
          <padding>
-            <Insets bottom="14.0" top="14.0"/>
+            <Insets bottom="14.0" top="14.0" />
          </padding>
          <RadioButton fx:id="typeOneRadioButton" mnemonicParsing="false" text="Самостоятельно" HBox.hgrow="ALWAYS">
             <HBox.margin>
-               <Insets left="16.0" right="16.0"/>
+               <Insets left="16.0" right="16.0" />
             </HBox.margin>
             <padding>
-               <Insets left="16.0" right="16.0"/>
+               <Insets left="16.0" right="16.0" />
             </padding>
          </RadioButton>
          <RadioButton fx:id="typeTwoRadioButton" mnemonicParsing="false" text="Через функцию" HBox.hgrow="ALWAYS">
             <HBox.margin>
-               <Insets left="16.0"/>
+               <Insets left="16.0" />
             </HBox.margin>
             <padding>
-               <Insets left="16.0" right="16.0"/>
+               <Insets left="16.0" right="16.0" />
             </padding>
          </RadioButton>
       </HBox>

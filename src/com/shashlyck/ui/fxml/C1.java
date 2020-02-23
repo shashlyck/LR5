@@ -24,10 +24,9 @@ public class C1 extends CreationPage {
         typeOneRadioButton.fire();
         typeOneRadioButton.setToggleGroup(group);
         typeTwoRadioButton.setToggleGroup(group);
-        countField.textProperty().addListener((observable, oldValue, newValue) -> {
-            if (!newValue.matches("\\d*")) {
-                countField.setText(newValue.replaceAll("[^\\d]", ""));
-            }
+        countField.textProperty().addListener((ob, ov, nv) -> {
+            if (!nv.matches("\\d*"))
+                countField.setText(nv.replaceAll("[^\\d]", ""));
         });
     }
 
@@ -36,11 +35,12 @@ public class C1 extends CreationPage {
 
         try{
             int count = Integer.parseInt(countField.getText());
-            if (count < 2 || count > 20) throw new NumberFormatException("count out of bounds");
+            if (count < 2 || count > 30)
+                throw new NumberFormatException("[count="+count+"] is out of bounds");
         } catch (NumberFormatException e){
             AlertHandler.makeAlert(Alert.AlertType.ERROR)
-                    .setContent("Должно быть >=2 и <= 20!\n".concat(e.getLocalizedMessage()))
-                    .setTitle("Неправильно введено количество!").show();
+                    .setContent("Должно быть >=2 и <= 30!\n".concat(e.getLocalizedMessage()))
+                    .setTitle("Неправильно введено количество точек!").show();
             return this;
         }
 
@@ -49,15 +49,11 @@ public class C1 extends CreationPage {
 
     @Override
     void loadNext() {
-        if (group.getSelectedToggle() == typeOneRadioButton) {
-                setNext((CreationPage) Loader.loadFXML("C12").getTwo());
-            ((C12)next).setCount(Integer.parseInt(countField.getText()));
-        }
-
-        else {
+        if (group.getSelectedToggle() == typeOneRadioButton)
+            setNext((CreationPage) Loader.loadFXML("C12").getTwo());
+        else
             setNext((CreationPage) Loader.loadFXML("C22").getTwo());
-            ((C22)next).setCount(Integer.parseInt(countField.getText()));
-        }
+        ((C2)next).setCount(Integer.parseInt(countField.getText()));
     }
 
     @Override

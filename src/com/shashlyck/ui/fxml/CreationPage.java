@@ -9,12 +9,12 @@ public abstract class CreationPage {
     @FXML
     private Parent parent;
 
-    private CreationWindow creationWindow;
+    protected CreationWindow creationWindow;
     private CreationPage previous = null;
     protected CreationPage next = null;
 
     public CreationPage nextPage(){
-        if (next == null) loadNext();
+        loadNext();
         next.previous = this;
         creationWindow.getBackButton().setVisible(true);
         next.applyWindow(creationWindow);

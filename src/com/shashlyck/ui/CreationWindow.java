@@ -40,7 +40,6 @@ public class CreationWindow {
     }
 
     void setStage(Stage stage){
-
         this.stage = stage;
     }
 

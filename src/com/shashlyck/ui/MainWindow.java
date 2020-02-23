@@ -1,5 +1,8 @@
 package com.shashlyck.ui;
 
+import com.shashlyck.functions.Point;
+import com.shashlyck.functions.TabulatedFunctionWithName;
+import com.shashlyck.functions.factory.ArrayTFFactory;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
@@ -17,15 +20,18 @@ public class MainWindow {
         this.mainStage = mainStage;
     }
 
-    public BorderPane mainPane;
-    public TableView tableObjects;
-    public TableColumn columnObjects;
-    public TableView tablePoints;
-    public LineChart lineChart;
+    @FXML
+    private BorderPane mainPane;
+    @FXML
+    private TableView<TabulatedFunctionWithName> tableObjects;
+    @FXML
+    private TableView<Point> tablePoints;
+    @FXML
+    private LineChart lineChart;
 
     @FXML
     void initialize(){
-
+        Settings.setCurrentFactory(new ArrayTFFactory());
     }
 
     public void handleAdd() {
@@ -35,7 +41,7 @@ public class MainWindow {
         addStage.initModality(Modality.WINDOW_MODAL);
         Pair<Parent, CreationWindow> pair = Loader.loadFXML("CreationWindow");
         pair.getTwo().setStage(addStage);
-        Loader.openInAWindow(addStage, pair.getOne(), false);
+        Loader.openInAWindow(addStage, pair.getOne(), true);
     }
 
     public void handleOperation() {
