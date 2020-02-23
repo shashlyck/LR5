@@ -1,6 +1,7 @@
 package com.shashlyck.ui;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -8,7 +9,9 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) {
         Loader.setPrimaryStage(primaryStage);
-        Loader.openInAWindow(primaryStage, Loader.loadFXML("MainWindow").getOne(), true);
+        Pair<Parent, MainWindow> pair = Loader.loadFXML("MainWindow");
+        Loader.openInAWindow(primaryStage, pair.getOne(), true);
+        pair.getTwo().setMainStage(primaryStage);
     }
 
     public static void main(String[] args) {

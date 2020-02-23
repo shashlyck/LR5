@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="parent" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shashlyck.ui.fxml.C12">
+    <Label alignment="CENTER" contentDisplay="CENTER" text="Шаг 2:">
+        <font>
+          <Font size="36.0" />
+        </font>
+    </Label>
+    <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="400.0" text="Введите все точки (x;y)" textAlignment="CENTER" wrapText="true">
+        <font>
+          <Font size="22.0" />
+        </font>
+    </Label>
+    <TableView fx:id="pointsTableView" editable="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+      <columns>
+          <TableColumn prefWidth="126.0" text="X" />
+          <TableColumn prefWidth="118.0" text="Y" />
+      </columns>
+    </TableView>
+</VBox>

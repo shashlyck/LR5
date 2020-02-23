@@ -15,9 +15,14 @@ public class AlertHandler {
     private final Alert alert;
 
     private AlertHandler(){
-        alert = new Alert(NONE);
+        alert = new Alert(INFORMATION);
+        alert.setOnCloseRequest(event -> alert.close());
     }
-    private AlertHandler(Alert.AlertType type){ alert = new Alert(type); }
+    private AlertHandler(Alert.AlertType type){
+
+        alert = new Alert(type);
+        alert.setOnCloseRequest(event -> alert.close());
+    }
     public static AlertHandler makeAlert() {
         return new AlertHandler();
     }
@@ -28,7 +33,7 @@ public class AlertHandler {
     }
 
     public void show(){
-        alert.showAndWait();
+        alert.show();
     }
 
     public boolean showAndGetResult(){
