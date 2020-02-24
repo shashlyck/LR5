@@ -10,6 +10,7 @@ public class CF extends CreationPage {
 
     @FXML
     private TableView<Point> resultTableView;
+    private TabulatedFunction resultFunction;
 
     @Override
     public CreationPage nextPage() {
@@ -18,8 +19,8 @@ public class CF extends CreationPage {
         return this;
     }
 
-    public void getResultFunction(TabulatedFunction function){
-
+    public TabulatedFunction getResultFunction(TabulatedFunction function){
+        return function;
     }
 
     @Override
@@ -31,4 +32,5 @@ public class CF extends CreationPage {
         creationWindow.getNextButton().setText("Финиш");
         super.applyWindow(creationWindow);
     }
+
 }

@@ -3,6 +3,7 @@ package com.shashlyck.ui;
 import com.shashlyck.functions.Point;
 import com.shashlyck.functions.TabulatedFunctionWithName;
 import com.shashlyck.functions.factory.ArrayTFFactory;
+import com.shashlyck.ui.fxml.SettingsController;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
 import javafx.scene.chart.LineChart;
@@ -15,6 +16,7 @@ import javafx.stage.Stage;
 public class MainWindow {
 
     private Stage mainStage;
+
 
     public void setMainStage(Stage mainStage) {
         this.mainStage = mainStage;
@@ -48,7 +50,14 @@ public class MainWindow {
     }
 
     public void handleSettings() {
-
+        Stage addStage = new Stage();
+        addStage.setTitle("Выберите способ реализации");
+        addStage.initOwner(mainStage);
+        addStage.initModality(Modality.WINDOW_MODAL);
+        Pair<Parent, SettingsController> pair = Loader.loadFXML("settings");
+        pair.getTwo().setStage(addStage);
+        Loader.openInAWindow(addStage, pair.getOne(), false);
+        pair.getTwo().setStage(addStage);
     }
 
     public void handleSave() {

@@ -1,5 +1,6 @@
 package com.shashlyck.ui;
 
+import com.shashlyck.functions.TabulatedFunction;
 import com.shashlyck.ui.fxml.CreationPage;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,10 +18,10 @@ public class CreationWindow {
     @FXML
     public Pane currentScenePane;
     private Stage stage;
+    private TabulatedFunction function;
 
     @FXML
     void initialize(){
-
         currentScene = (CreationPage) Loader.loadFXML("C1").getTwo();
         currentScene.applyWindow(this);
         nextButton.setOnAction(event -> currentScene = currentScene.nextPage());

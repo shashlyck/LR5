@@ -1,14 +1,27 @@
 package com.shashlyck.ui.fxml;
 
+import com.shashlyck.functions.MathFunction;
 import com.shashlyck.functions.Point;
+import com.shashlyck.functions.SqrFunction;
+import com.shashlyck.functions.SqrRootFunction;
+import com.shashlyck.functions.factory.ArrayTFFactory;
+import com.shashlyck.functions.factory.LinkedListTFFactory;
+import com.shashlyck.functions.factory.TabulatedFunctionFactory;
 import com.shashlyck.ui.AlertHandler;
 import com.shashlyck.ui.CreationWindow;
 import com.shashlyck.ui.Loader;
+import com.shashlyck.ui.Settings;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class C22 extends CreationPage implements C2 {
 
@@ -22,9 +35,25 @@ public class C22 extends CreationPage implements C2 {
     private TextField startField;
     private int count;
 
+    @FXML
+    void initialize(){
+        List<String> implFunctionsList =
+                Arrays.asList(new String[] {"Возведение в квадрат", "Взятие корня"});
+        ObservableList<String> implFunctions = FXCollections.observableList(implFunctionsList);
+        functionChoiceBox.setItems(implFunctions);
+    }
+
     @Override
     void loadNext() {
         setNext((CreationPage) Loader.loadFXML("CF").getTwo());
+
+        MathFunction mathFunction = functionChoiceBox.getSelectionModel().getSelectedItem().equals("Возведение в квадрат") ?
+                new SqrFunction() : new SqrRootFunction();
+        TabulatedFunctionFactory currentFactory = SettingsController.getCurrentFactoryType() ?
+                new ArrayTFFactory() : new LinkedListTFFactory();
+        Settings.setCurrentFactory(currentFactory);
+        ((CF)next).getResultFunction(Settings.getCurrentFactory().create(mathFunction,
+                Double.parseDouble(startField.getText()), Double.parseDouble(endField.getText()), count));
     }
 
     @Override
@@ -63,4 +92,5 @@ public class C22 extends CreationPage implements C2 {
         creationWindow.getBackButton().setText("К Шагу 1");
         creationWindow.getNextButton().setText("К Шагу 3");
     }
+
 }

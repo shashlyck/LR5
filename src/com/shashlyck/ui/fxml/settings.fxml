@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="92.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.shashlyck.ui.fxml.SettingsController">
+   <children>
+      <RadioButton fx:id="arrayType" layoutX="40.0" layoutY="21.0" mnemonicParsing="false" text="Массив" />
+      <RadioButton fx:id="listType" layoutX="131.0" layoutY="21.0" mnemonicParsing="false" text="Лист" />
+      <Button fx:id="btnOk" defaultButton="true" layoutX="84.0" layoutY="53.0" mnemonicParsing="false" onAction="#close" text="Готово" />
+      <Button fx:id="btnCancel" cancelButton="true" layoutX="154.0" layoutY="53.0" mnemonicParsing="false" onAction="#close" text="Отмена" />
+   </children>
+</AnchorPane>

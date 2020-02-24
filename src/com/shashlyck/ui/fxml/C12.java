@@ -2,17 +2,22 @@ package com.shashlyck.ui.fxml;
 
 import com.shashlyck.functions.TabulatedFunction;
 import com.shashlyck.functions.factory.ArrayTFFactory;
+import com.shashlyck.functions.factory.LinkedListTFFactory;
 import com.shashlyck.functions.factory.TabulatedFunctionFactory;
 import com.shashlyck.ui.CreationWindow;
 import com.shashlyck.ui.Loader;
 import com.shashlyck.ui.Settings;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
 import javafx.util.converter.DoubleStringConverter;
 
 import java.util.ArrayList;
@@ -57,11 +62,26 @@ public class C12 extends CreationPage implements C2 {
     void initialize(){
         TableColumn<EditablePoint, Double> xCoorColumn = new TableColumn<>("X коорд.");
         xCoorColumn.setCellValueFactory(new PropertyValueFactory<>("X"));
+        xCoorColumn.setOnEditCommit((TableColumn.CellEditEvent<EditablePoint, Double> event) -> {
+            TablePosition<EditablePoint, Double> pos = event.getTablePosition();
+            Double newValue = event.getNewValue();
+            int row = pos.getRow();
+            EditablePoint point = event.getTableView().getItems().get(row);
+            point.setX(newValue);
+        });
         TableColumn<EditablePoint, Double> yCoorColumn = new TableColumn<>("Y коорд.");
         yCoorColumn.setCellValueFactory(new PropertyValueFactory<>("Y"));
+        yCoorColumn.setOnEditCommit((TableColumn.CellEditEvent<EditablePoint, Double> event) -> {
+            TablePosition<EditablePoint, Double> pos = event.getTablePosition();
+            Double newValue = event.getNewValue();
+            int row = pos.getRow();
+            EditablePoint point = event.getTableView().getItems().get(row);
+            point.setY(newValue);
+        });
         pointsTableView.getColumns().addAll(xCoorColumn, yCoorColumn);
         xCoorColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
         yCoorColumn.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
+
     }
 
     @Override
@@ -70,12 +90,14 @@ public class C12 extends CreationPage implements C2 {
         int size = pointsTableView.getItems().size();
         double[] xValues = new double[size];
         double[] yValues = new double[size];
-        List<EditablePoint> points = pointsTableView.getItems();
+        ObservableList<EditablePoint> points = pointsTableView.getItems();
         for (int i = 0; i < size; i++) {
             xValues[i] = points.get(i).X;
             yValues[i] = points.get(i).Y;
         }
-
+        TabulatedFunctionFactory currentFactory = SettingsController.getCurrentFactoryType() ?
+                new ArrayTFFactory() : new LinkedListTFFactory();
+        Settings.setCurrentFactory(currentFactory);
         ((CF)next).getResultFunction(Settings.getCurrentFactory().create(xValues, yValues));
     }
 

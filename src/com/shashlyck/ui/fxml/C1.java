@@ -9,6 +9,8 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
+import java.util.Arrays;
+
 public class C1 extends CreationPage {
 
     @FXML
@@ -51,8 +53,9 @@ public class C1 extends CreationPage {
     void loadNext() {
         if (group.getSelectedToggle() == typeOneRadioButton)
             setNext((CreationPage) Loader.loadFXML("C12").getTwo());
-        else
+        else{
             setNext((CreationPage) Loader.loadFXML("C22").getTwo());
+        }
         ((C2)next).setCount(Integer.parseInt(countField.getText()));
     }
 
